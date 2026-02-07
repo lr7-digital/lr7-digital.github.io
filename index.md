@@ -1,6 +1,5 @@
 ---
-layout: default
+layout: splash
 title: lr7 digital
 ---
-# lr7 digital
-Welcome to our studio. Check out [Time On Ice]({{ '/toi/' | relative_url }}).
+<h1>lr7 digital</h1>
