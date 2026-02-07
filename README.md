@@ -1,12 +1,8 @@
----
-layout: home
-title: Hockey Shift Tracker
----
 # Focus on the game, not your watch.
 
 You paid the league fees. You bought the top-end stick. But do you actually know if you’re getting your ice time? Stop guessing and start tracking.
 
-**Time On Ice** is the ultimate shift tracker built exclusively for hockey players on Wear OS. The app automatically detects when you explode off the bench and when you sit down to catch your breath. It logs every second of your game without you ever needing to fumble with a button or take your gloves off.
+**Time On Ice** is the ultimate shift tracker built exclusively for hockey players (Wear OS). The app automatically detects when you explode off the bench and when you sit down to catch your breath. It logs every second of your game without you ever needing to fumble with a button or take your gloves off.
 
 ### 🏒 The Rookie Contract (Free Forever)
 
@@ -26,6 +22,6 @@ Upgrade to the big leagues. Unlock deep analytics to analyze your entire season.
 *   **Advanced Analytics:** Unlock the "Scout's Clipboard" with Season Trends, Shift Intensity Scatter Plots, and Long-Term Performance graphs.
 *   **Data Export:** Export your season logs to CSV for your own analysis.
 
-### 🔒 [Privacy Policy]({{ '/toi/privacy/' | relative_url }})
+### 🔒 [Privacy Policy](privacy/)
 
 Your performance is your business. Time On Ice processes all sensor data locally. Your stats stay on your wrist and your phone—no external clouds, no prying eyes.

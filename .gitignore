@@ -1,0 +1,12 @@
+.DS_Store
+
+# Jekyll
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ruby/Bundler
+.bundle/
+vendor/
+*.gem
+*.gemlock
