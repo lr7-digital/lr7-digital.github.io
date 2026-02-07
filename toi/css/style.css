@@ -1,0 +1,123 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.left-column {
+    flex: 1;
+}
+
+.right-column {
+    flex: 2;
+}
+
+.icon {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 20%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.beta-cta, .contact-card {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    text-align: center;
+}
+
+.beta-cta p, .contact-card p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.beta-cta a, .contact-card a {
+    color: #007aff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.beta-cta a:hover, .contact-card a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3 {
+    margin-bottom: 20px;
+    color: #000;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+ul {
+    margin-bottom: 2rem;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+.main-container {
+    padding: 40px 20px;
+    max-width: 90vw;
+}
+
+.centered-image {
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    display: block;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+    }
+    
+    .right-column {
+        position: static;
+        margin-bottom: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .icon {
+        max-width: 200px;
+    }
+
+    ul {
+        text-align: left;
+        display: inline-block;
+    }
+}

@@ -1,0 +1,13 @@
+title: Time On Ice
+description: The ultimate hockey shift tracker for Wear OS.
+url: "https://lr7-digital.github.io"
+baseurl: "/toi"
+
+# Build settings
+markdown: kramdown
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - GEMINI.md
+  - vendor/
