@@ -1,7 +1,7 @@
-title: Time On Ice
-description: The ultimate hockey shift tracker for Wear OS.
+title: lr7 digital
+description: Time On Ice and other projects.
 url: "https://lr7-digital.github.io"
-baseurl: "/toi"
+baseurl: ""
 
 # Build settings
 markdown: kramdown
