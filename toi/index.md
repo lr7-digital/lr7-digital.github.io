@@ -14,6 +14,7 @@ Everything you need to track tonight's game. No ads. No subscriptions.
 
 *   **Automatic Shift Detection:** Our "On-Ice Scout" recognizes high-intensity skating vs. resting on the bench. Just hit start and play.
 *   **Real-Time Dashboard:** See your live Shift Timer, Heart Rate, and Distance right on your wrist.
+*   **Watch Face Complications:** Keep your game stats in view at all times. Add TOI tracking to your favorite watch face with sleek progress gauges and text complications.
 *   **Post-Game Breakdown:** Immediately view your Total Time on Ice (TOI), Shift Count, and Average Shift Length when the buzzer sounds.
 *   **Recent History:** Keep tabs on your last 3 games to see if you're slumping or surging.
 
