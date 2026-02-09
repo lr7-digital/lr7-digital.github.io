@@ -53,4 +53,4 @@ To function, the app requires the following permissions:
 ## 7. Contact Us
 
 If you have questions about this privacy policy, please contact us at:
-[support@lr7.digital](mailto:support@lr7.digital)
+[lr7-digital@proton.me](mailto:lr7-digital@proton.me)

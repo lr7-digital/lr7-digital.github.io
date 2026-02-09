@@ -6,7 +6,7 @@ title: Beta Tester Instructions
 
 Thanks for helping me test **Time On Ice**. You are now on the official "Roster" (the whitelist). Please follow these steps **in order**. Beta testing on Android can be a little quirky, so stick to the script!
 
-If you haven't joined yet, click [here](https://forms.gle/wj1Bfc2VrzWvGCy77) or email me at [hello@lr7.digital](mailto:hello@lr7.digital) and I'll add you to the list!
+If you haven't joined yet, click [here](https://forms.gle/wj1Bfc2VrzWvGCy77) or email me at [lr7-digital@proton.me](mailto:lr7-digital@proton.me) and I'll add you to the list!
 
 Now if you're in, are you ready? Good cuz 'yer goin!
 
@@ -60,6 +60,6 @@ You must "Opt-In" before you can download anything.
 * **Forget about it.** Let it track your shifts automatically.
 
 **Found a bug?**
-Send an email to [support@lr7.digital](mailto:support@lr7.digital)
+Send an email to [lr7-digital@proton.me](mailto:lr7-digital@proton.me)
 
 Thanks for the help!
