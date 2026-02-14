@@ -6,7 +6,7 @@ title: Beta Tester Instructions
 
 Thanks for helping me test **Time On Ice**. You are now on the official "Roster" (the whitelist). Please follow these steps **in order**. Beta testing on Android can be a little quirky, so stick to the script!
 
-If you haven't joined yet, click [here](https://forms.gle/wj1Bfc2VrzWvGCy77) or email me at [lr7-digital@proton.me](mailto:lr7-digital@proton.me) and I'll add you to the list!
+> If you haven't joined yet, click [here](https://groups.google.com/g/toi-testers) and you'll be added to the list automatically!
 
 Now if you're in, are you ready? Good cuz 'yer goin!
 
