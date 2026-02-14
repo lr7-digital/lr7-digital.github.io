@@ -4,9 +4,9 @@ title: Beta Tester Instructions
 ---
 # You're in! Welcome to the Time On Ice Beta 🏒
 
-Thanks for helping me test **Time On Ice**. You are now on the official "Roster" (the whitelist). Please follow these steps **in order**. Beta testing on Android can be a little quirky, so stick to the script!
+Thanks for helping me test **Time On Ice**. You are now on the official "Roster" (the whitelist). Please follow these steps **in order**. Beta testing on WearOS/Android can be a little quirky, so stick to the script!
 
-> If you haven't joined yet, click [here](https://groups.google.com/g/toi-testers) and you'll be added to the list automatically!
+> **ℹ️ Not a tester yet?** Click [here](https://groups.google.com/g/toi-testers) and you'll be added to the list automatically!
 
 Now if you're in, are you ready? Good cuz 'yer goin!
 
