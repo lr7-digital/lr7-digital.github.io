@@ -1,34 +1,42 @@
 ---
 layout: page
-title: Beta Tester Instructions
+title: Join the Beta Program
 ---
-# You're in! Welcome to the Time On Ice Beta 🏒
+# Time On Ice is officially live on the Play Store! 🏒
 
-Thanks for helping me test **Time On Ice**. You are now on the official "Roster" (the whitelist). Please follow these steps **in order**. Beta testing on WearOS/Android can be a little quirky, so stick to the script!
+You can download the stable version of **Time On Ice** directly from the Google Play Store:
+**[Download on Google Play](https://play.google.com/store/apps/details?id=com.TimeOnIce)**
 
-> **ℹ️ Not a tester yet?** Click [here](https://groups.google.com/g/toi-testers) and you'll be added to the list automatically!
+---
 
-Now if you're in, are you ready? Good cuz 'yer goin!
+## Want to test bleeding-edge features before anyone else? Join our Beta Program.
 
-### Step 1: Accept the Invite (Crucial)
-You must "Opt-In" before you can download anything.
+We use the Beta Program to test new "On-Ice Scout" algorithms and advanced analytics before they go wide. If you're a power user who wants the latest features first—and doesn't mind an occasional bug—we'd love to have you on the roster.
+
+### How to Join the Beta
+
+Follow these steps **in order** to get the beta build on your watch and phone.
+
+> **Step 1: Join the Group**
+> Click [here](https://groups.google.com/g/toi-testers) to join the Google Group. You'll be added to the whitelist automatically.
+
+### Step 2: Accept the Invite (Crucial)
+You must "Opt-In" before you can download the beta version.
 
 1.  Click this specific link: **[https://play.google.com/apps/testing/com.TimeOnIce](https://play.google.com/apps/testing/com.TimeOnIce)**
-2.  Make sure you are signed in with the **same Google Account** you gave me.
+2.  Make sure you are signed in with the **same Google Account** you used to join the group.
 3.  Click the big blue button that says **"BECOME A TESTER"**.
-    * *If you see a "App not available" error, wait 30 minutes and try again. Google sometimes takes time to update the list.*
 
 ---
 
-### Step 2: Install on Your Phone 📱
+### Step 3: Install on Your Phone 📱
 1.  Once you have become a tester, use this link to go to the Store page:
     * **[https://play.google.com/store/apps/details?id=com.TimeOnIce](https://play.google.com/store/apps/details?id=com.TimeOnIce)**
 2.  Install the app on your phone.
-3.  **Open it** and grant the necessary permissions.
 
 ---
 
-### Step 3: Install on Your Watch ⌚ (The Important Part)
+### Step 4: Install on Your Watch ⌚ (The Important Part)
 *The watch app does NOT always install automatically. Do one of the following:*
 
 **Option A: The "Remote Install" (Best Method)**
@@ -36,7 +44,7 @@ You must "Opt-In" before you can download anything.
     * **[https://play.google.com/store/apps/details?id=com.TimeOnIce](https://play.google.com/store/apps/details?id=com.TimeOnIce)**
 2.  Look for the green **"Install on more devices"** button (or the small arrow next to "Install").
 3.  Check the box next to your **Watch name** (e.g., "Galaxy Watch 6").
-4.  Click **Install**. It will push the app to your watch within 1-2 minutes.
+4.  Click **Install**.
 
 **Option B: The "On-Watch" Method**
 1.  Open the **Play Store app** on your actual watch face.
@@ -45,21 +53,16 @@ You must "Opt-In" before you can download anything.
 
 ---
 
-### Step 4: Get "Pro" for Free 💎
+### Step 5: Get "Pro" for Free 💎
+As a beta tester, you can unlock the Pro Contract features for free using the Google Play Test Card.
+
 1.  Open the app on your **Phone**.
 2.  Tap the **Settings (Gear)** icon > **"Unlock Pro"**.
 3.  You will see a purchase screen.
     * **CHECK:** It should say **"Test card, always approves"** or show a price of **$0.00 / Free**.
-    * *If it asks for real money ($4.99), **STOP**. Do not pay. Let me know at email below.*
-
----
-
-### Step 5: Hit the Ice! 🥅
-* **Wear your watch** to your next game.
-* **Start the app** and **Hit "Start Game"** during warmups or right before face-off.
-* **Forget about it.** Let it track your shifts automatically.
+    * *If it asks for real money ($4.99), **STOP**. Do not pay. Let me know at the email below.*
 
 **Found a bug?**
-Send an email to [lr7-digital@proton.me](mailto:lr7-digital@proton.me)
+Send an email to [hello@lr7.digital](mailto:hello@lr7.digital)
 
-Thanks for the help!
+Thanks for helping us build the best shift tracker in hockey!
