@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: toi-page
 title: Join the Beta Program
 ---
-# Time On Ice is officially live on the Play Store! 🏒
+🏒 **Time On Ice is officially live on the Play Store!**
 
 You can download the stable version of **Time On Ice** directly from the Google Play Store:
 **[Download on Google Play](https://play.google.com/store/apps/details?id=com.TimeOnIce)**
