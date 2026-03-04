@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} — Time On Ice</title>
+  <meta name="description" content="{{ page.description }}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ page.title }} — Time On Ice">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ '/toi/assets/toi-hero.jpeg' | absolute_url }}">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title }} — Time On Ice">
+  <meta name="twitter:description" content="{{ page.description }}">
+  <meta name="twitter:image" content="{{ '/toi/assets/toi-hero.jpeg' | absolute_url }}">
+
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================================
+       DESIGN TOKENS — "Dark Ice" System
+       ======================================== */
+    :root {
+      --deep-ice: #0A0E14;
+      --night-blue: #0D1520;
+      --surface-blue: #141E2B;
+      --ice-cyan: #00D4FF;
+      --cyan-glow: rgba(0, 212, 255, 0.4);
+      --cyan-glow-strong: rgba(0, 212, 255, 0.6);
+      --frost-grey: #8899AA;
+      --bench-grey: #1A1F27;
+      --on-ice-white: #FFFFFF;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--deep-ice);
+      color: #E0E8F0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--ice-cyan); text-decoration: none; }
+
+    .overline {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ice-cyan);
+      margin-bottom: 12px;
+    }
+
+    /* ========================================
+       SCROLL REVEAL
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================================
+       1. STICKY NAV
+       ======================================== */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 14, 20, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+      transition: background 0.3s;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-logo img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--frost-grey);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ice-cyan); }
+
+    .nav-cta {
+      border: 1px solid var(--ice-cyan);
+      color: var(--ice-cyan) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: rgba(0, 212, 255, 0.1);
+      box-shadow: 0 0 16px var(--cyan-glow);
+    }
+
+    .nav-mobile {
+      display: none;
+    }
+
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--frost-grey);
+      margin: 5px 0;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ========================================
+       2. HERO
+       ======================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url("{{ '/toi/assets/toi-hero.jpeg' | relative_url }}") center/cover no-repeat;
+      filter: brightness(0.35);
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(10, 14, 20, 0.92) 0%, rgba(10, 14, 20, 0.6) 50%, rgba(10, 14, 20, 0.85) 100%),
+        linear-gradient(to bottom, transparent 60%, var(--deep-ice) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 120px 40px 80px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 40px;
+      overflow: hidden;
+    }
+
+    .hero-text h1 {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 8vw, 96px);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 0.95;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 span {
+      display: block;
+      color: var(--ice-cyan);
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--frost-grey);
+      max-width: 480px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--ice-cyan);
+      color: var(--deep-ice);
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 30px var(--cyan-glow), 0 4px 20px rgba(0,0,0,0.3);
+      transform: translateY(-1px);
+      color: var(--deep-ice);
+    }
+
+    .btn-primary svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--frost-grey);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 20px;
+      transition: color 0.2s;
+    }
+
+    .btn-secondary:hover { color: #fff; }
+
+    .hero-devices {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    .hero-phone {
+      width: 230px;
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    }
+
+    .hero-watch {
+      position: absolute;
+      bottom: -10px;
+      left: -20px;
+      width: 115px;
+      border-radius: 50%;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    .hero-watch-glow {
+      position: absolute;
+      bottom: -35px;
+      left: -45px;
+      width: 170px;
+      height: 170px;
+      background: radial-gradient(circle, var(--cyan-glow) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* ========================================
+       3. BINARY STATE BLOCK
+       ======================================== */
+    .binary-state {
+      padding: 100px 0;
+    }
+
+    .binary-state-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+    }
+
+    .binary-state-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .binary-state-header p {
+      color: var(--frost-grey);
+      font-size: 17px;
+    }
+
+    .binary-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1000px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .binary-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+      transition: clip-path 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .panel-bench {
+      background: var(--bench-grey);
+    }
+
+    .panel-onice {
+      background: var(--on-ice-white);
+    }
+
+    .binary-panel .watch-frame {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+
+    .binary-panel .watch-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .panel-label {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .panel-bench .panel-label { color: var(--frost-grey); }
+    .panel-onice .panel-label { color: var(--ice-cyan); }
+
+    .binary-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: var(--ice-cyan);
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .binary-divider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      background: linear-gradient(90deg, transparent, var(--cyan-glow), transparent);
+      opacity: 0;
+      transition: opacity 0.6s;
+    }
+
+    .binary-panels.active .binary-divider::after {
+      opacity: 1;
+    }
+
+    /* ========================================
+       4. FEATURE SHOWCASE
+       ======================================== */
+    .feature-row {
+      padding: 80px 24px;
+    }
+
+    .feature-row:nth-child(even) { background: var(--night-blue); }
+    .feature-row:nth-child(odd) { background: var(--deep-ice); }
+
+    .feature-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .feature-row:nth-child(even) .feature-inner {
+      direction: rtl;
+    }
+
+    .feature-row:nth-child(even) .feature-inner > * {
+      direction: ltr;
+    }
+
+    .feature-screenshot {
+      display: flex;
+      justify-content: center;
+    }
+
+    .feature-screenshot .phone-frame {
+      position: relative;
+      width: 280px;
+    }
+
+    .feature-screenshot .phone-frame img {
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .feature-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+
+    .feature-text p {
+      color: var(--frost-grey);
+      font-size: 16px;
+      max-width: 440px;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       5. ANIMATED STATS COUNTER
+       ======================================== */
+    .stats-section {
+      padding: 100px 24px;
+      background: var(--night-blue);
+    }
+
+    .stats-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-item .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 900;
+      color: var(--ice-cyan);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-item .stat-label {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--frost-grey);
+    }
+
+    /* ========================================
+       6. HOW IT WORKS
+       ======================================== */
+    .how-it-works {
+      padding: 100px 24px;
+      background: var(--deep-ice);
+    }
+
+    .how-header {
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto 60px;
+    }
+
+    .how-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 48px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .how-cards {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 0 24px;
+    }
+
+    .how-card {
+      background: var(--surface-blue);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      border-radius: 16px;
+      padding: 40px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .how-card:hover {
+      border-color: var(--ice-cyan);
+      box-shadow: 0 0 30px var(--cyan-glow), 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .how-card-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .how-card-step {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ice-cyan);
+      margin-bottom: 12px;
+    }
+
+    .how-card h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .how-card p {
+      color: var(--frost-grey);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ========================================
+       7. WATCH FACE SHOWCASE
+       ======================================== */
+    .watch-showcase {
+      padding: 100px 24px;
+      background: var(--night-blue);
+      overflow: hidden;
+    }
+
+    .watch-showcase-header {
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto 60px;
+    }
+
+    .watch-showcase-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 48px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .watch-showcase-header p {
+      color: var(--frost-grey);
+      font-size: 17px;
+    }
+
+    .watch-faces {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      position: relative;
+    }
+
+    .watch-face-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .watch-face-frame {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(0, 212, 255, 0.2);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .watch-face-frame:hover {
+      border-color: var(--ice-cyan);
+      box-shadow: 0 0 20px var(--cyan-glow), 0 8px 30px rgba(0,0,0,0.3);
+    }
+
+    .watch-face-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .watch-face-label {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--frost-grey);
+    }
+
+    /* EKG connector line */
+    .ekg-line {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 40px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ekg-line svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .ekg-path {
+      stroke: var(--ice-cyan);
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 800;
+      stroke-dashoffset: 800;
+      transition: stroke-dashoffset 2s ease;
+      filter: drop-shadow(0 0 6px var(--cyan-glow));
+    }
+
+    .ekg-line.visible .ekg-path {
+      stroke-dashoffset: 0;
+    }
+
+    .watch-face-item { z-index: 1; }
+
+    /* ========================================
+       8. DOWNLOAD CTA
+       ======================================== */
+    .download-cta {
+      padding: 120px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.08) 0%, var(--deep-ice) 70%);
+    }
+
+    .download-cta-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .download-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .download-cta .subtitle {
+      color: var(--frost-grey);
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .download-cta .btn-primary {
+      font-size: 18px;
+      padding: 16px 36px;
+    }
+
+    .language-flags {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .language-flags span {
+      font-size: 28px;
+      transition: transform 0.2s;
+      cursor: default;
+    }
+
+    .language-flags span:hover {
+      transform: scale(1.2);
+    }
+
+    .language-note {
+      color: var(--frost-grey);
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .site-footer {
+      background: var(--deep-ice);
+      border-top: 1px solid rgba(0, 212, 255, 0.08);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: var(--frost-grey);
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--ice-cyan); }
+
+    .footer-copy {
+      color: rgba(136, 153, 170, 0.5);
+      font-size: 13px;
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        padding-top: 100px;
+        text-align: center;
+      }
+
+      .hero-subtitle { margin-left: auto; margin-right: auto; }
+      .hero-ctas { justify-content: center; }
+
+      .hero-devices { margin-top: 40px; }
+      .hero-phone { width: 220px; }
+      .hero-watch { width: 110px; left: -10px; }
+
+      .binary-panels { grid-template-columns: 1fr; }
+      .binary-divider {
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 50%;
+        width: 100%;
+        height: 3px;
+        transform: translateY(50%);
+      }
+
+      .feature-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .feature-row:nth-child(even) .feature-inner { direction: ltr; }
+      .feature-text p { margin: 0 auto; }
+      .feature-screenshot .phone-frame { width: 240px; }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 24px;
+      }
+
+      .how-cards { grid-template-columns: 1fr; max-width: 400px; }
+
+      .watch-faces {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .ekg-line { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+
+      .nav-mobile {
+        display: none;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 14, 20, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        padding: 24px;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+      }
+
+      .nav-mobile.open { display: block; }
+
+      .nav-mobile a {
+        display: block;
+        padding: 12px 0;
+        color: var(--frost-grey);
+        font-size: 16px;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .nav-mobile a:hover { color: var(--ice-cyan); }
+
+      .hero-text h1 {
+        font-size: clamp(44px, 12vw, 64px);
+      }
+
+      .binary-panel { padding: 40px 24px; }
+      .binary-panel .watch-frame { width: 140px; height: 140px; }
+    }
+
+    /* ========================================
+       SCHEMA.ORG — injected as JSON-LD
+       ======================================== */
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       1. STICKY NAV
+       ========================================== -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="{{ '/toi/' | relative_url }}" class="nav-logo">
+        <img src="{{ '/toi/assets/icon.png' | relative_url }}" alt="Time On Ice" width="32" height="32">
+        <span>Time On Ice</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#download" class="nav-cta">Download Now</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Menu" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile">
+      <a href="#features" onclick="this.parentElement.classList.remove('open')">Features</a>
+      <a href="#how-it-works" onclick="this.parentElement.classList.remove('open')">How It Works</a>
+      <a href="#download" onclick="this.parentElement.classList.remove('open')">Download Now</a>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       2. HERO
+       ========================================== -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="overline">Hockey Shift Tracker for Wear OS</p>
+        <h1>FOCUS ON<span>THE GAME</span></h1>
+        <p class="hero-subtitle">Automatic shift tracking that knows when you hit the ice and when you hit the bench. No buttons. No gloves off. Just play.</p>
+        <div class="hero-ctas">
+          <a href="https://play.google.com/store/apps/details?id=com.lr7.timeonice" target="_blank" rel="noopener" class="btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302-2.302 2.302-2.593-2.302 2.593-2.302zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+            Get It on Google Play
+          </a>
+          <a href="#features" class="btn-secondary">See Features &#8595;</a>
+        </div>
+      </div>
+      <div class="hero-devices">
+        <div class="hero-watch-glow"></div>
+        <img src="{{ '/toi/assets/mobile-home.jpg' | relative_url }}" alt="Time On Ice phone app showing game stats" class="hero-phone" width="260" height="563">
+        <img src="{{ '/toi/assets/wear-onice.png' | relative_url }}" alt="Wear OS watch showing On Ice timer" class="hero-watch" width="130" height="130">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       3. BINARY STATE BLOCK
+       ========================================== -->
+  <section class="binary-state" id="features">
+    <div class="binary-state-header reveal">
+      <p class="overline">The Core Concept</p>
+      <h2>Two states. One glance.</h2>
+      <p>Time On Ice detects the exact moment you leave the bench. Your watch instantly switches from rest mode to tracking mode.</p>
+    </div>
+    <div class="binary-panels reveal">
+      <div class="binary-panel panel-bench">
+        <div class="watch-frame">
+          <img src="{{ '/toi/assets/wear-bench.png' | relative_url }}" alt="Watch showing Bench state — resting, heart rate recovery" width="180" height="180" loading="lazy">
+        </div>
+        <span class="panel-label">Bench</span>
+      </div>
+      <div class="binary-divider"></div>
+      <div class="binary-panel panel-onice">
+        <div class="watch-frame">
+          <img src="{{ '/toi/assets/wear-onice.png' | relative_url }}" alt="Watch showing On Ice state — active shift timer and heart rate" width="180" height="180" loading="lazy">
+        </div>
+        <span class="panel-label">On Ice</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       4. FEATURE SHOWCASE
+       ========================================== -->
+  <div class="feature-showcase">
+    <div class="feature-row">
+      <div class="feature-inner reveal">
+        <div class="feature-screenshot">
+          <div class="phone-frame">
+            <img src="{{ '/toi/assets/mobile-stats.jpg' | relative_url }}" alt="Season statistics showing totals, trends and shift quality" width="280" height="606" loading="lazy">
+          </div>
+        </div>
+        <div class="feature-text">
+          <p class="overline">Season Analytics</p>
+          <h2>Your entire season at a glance</h2>
+          <p>Track trends across every game. See your total ice time, shift counts, and distance evolve over the season with interactive charts.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-inner reveal">
+        <div class="feature-screenshot">
+          <div class="phone-frame">
+            <img src="{{ '/toi/assets/mobile-home.jpg' | relative_url }}" alt="Game dashboard with shift distribution and key metrics" width="280" height="606" loading="lazy">
+          </div>
+        </div>
+        <div class="feature-text">
+          <p class="overline">Game Dashboard</p>
+          <h2>Every game, broken down</h2>
+          <p>Post-game breakdown with shift length distribution, heart rate data, and key stats. Know exactly how you performed tonight.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-inner reveal">
+        <div class="feature-screenshot">
+          <div class="phone-frame">
+            <img src="{{ '/toi/assets/mobile-stats2.jpg' | relative_url }}" alt="Advanced analytics with scatter plots and personal records" width="280" height="606" loading="lazy">
+          </div>
+        </div>
+        <div class="feature-text">
+          <p class="overline">Deep Analytics</p>
+          <h2>Scout-level insights</h2>
+          <p>Shift quality scatter plots, personal records, and distribution charts. See patterns a coach would see — intensity vs. duration, game-over-game trends.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       5. ANIMATED STATS COUNTER
+       ========================================== -->
+  <section class="stats-section">
+    <div class="stats-grid reveal" id="stats-counter">
+      <div class="stat-item">
+        <div class="stat-value" data-target="14" data-suffix="+">0</div>
+        <div class="stat-label">Games Tracked</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" data-target="32:07" data-type="time">0:00</div>
+        <div class="stat-label">Avg TOI</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" data-target="0.5" data-prefix="<" data-suffix="s">0s</div>
+        <div class="stat-label">Glance Time</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" data-target="8">0</div>
+        <div class="stat-label">Languages</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       6. HOW IT WORKS
+       ========================================== -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="how-header reveal">
+      <p class="overline">Simple By Design</p>
+      <h2>How It Works</h2>
+    </div>
+    <div class="how-cards">
+      <div class="how-card reveal">
+        <span class="how-card-icon">&#127954;</span>
+        <div class="how-card-step">Step 1</div>
+        <h3>Strap In</h3>
+        <p>Start a game on your watch. One tap, then forget about it.</p>
+      </div>
+      <div class="how-card reveal">
+        <span class="how-card-icon">&#9201;</span>
+        <div class="how-card-step">Step 2</div>
+        <h3>Play Your Game</h3>
+        <p>Our On-Ice Scout detects your shifts automatically. No buttons to press.</p>
+      </div>
+      <div class="how-card reveal">
+        <span class="how-card-icon">&#128200;</span>
+        <div class="how-card-step">Step 3</div>
+        <h3>Review Your Stats</h3>
+        <p>Get a full breakdown on your phone. Track your progress all season long.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       7. WATCH FACE SHOWCASE
+       ========================================== -->
+  <section class="watch-showcase">
+    <div class="watch-showcase-header reveal">
+      <p class="overline">On Your Wrist</p>
+      <h2>Designed for 170 BPM</h2>
+      <p>Every screen readable in a half-second glance. Dark backgrounds, high contrast data, zero clutter.</p>
+    </div>
+    <div class="watch-faces reveal">
+      <div class="ekg-line">
+        <svg viewBox="0 0 700 40" preserveAspectRatio="none">
+          <path class="ekg-path" d="M0,20 L80,20 L100,20 L110,8 L115,32 L120,4 L125,36 L130,20 L200,20 L280,20 L300,20 L310,8 L315,32 L320,4 L325,36 L330,20 L400,20 L480,20 L500,20 L510,8 L515,32 L520,4 L525,36 L530,20 L600,20 L700,20"/>
+        </svg>
+      </div>
+      <div class="watch-face-item">
+        <div class="watch-face-frame">
+          <img src="{{ '/toi/assets/wear-start.png' | relative_url }}" alt="Start Game screen" width="160" height="160" loading="lazy">
+        </div>
+        <span class="watch-face-label">Start Game</span>
+      </div>
+      <div class="watch-face-item">
+        <div class="watch-face-frame">
+          <img src="{{ '/toi/assets/wear-onice.png' | relative_url }}" alt="On Ice tracking screen" width="160" height="160" loading="lazy">
+        </div>
+        <span class="watch-face-label">On Ice</span>
+      </div>
+      <div class="watch-face-item">
+        <div class="watch-face-frame">
+          <img src="{{ '/toi/assets/wear-bench.png' | relative_url }}" alt="Bench screen" width="160" height="160" loading="lazy">
+        </div>
+        <span class="watch-face-label">Bench</span>
+      </div>
+      <div class="watch-face-item">
+        <div class="watch-face-frame">
+          <img src="{{ '/toi/assets/wear-summary.png' | relative_url }}" alt="Game Summary screen" width="160" height="160" loading="lazy">
+        </div>
+        <span class="watch-face-label">Game Summary</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       8. DOWNLOAD CTA
+       ========================================== -->
+  <section class="download-cta" id="download">
+    <div class="download-cta-inner reveal">
+      <h2>TRACK EVERY SHIFT</h2>
+      <p class="subtitle">On Google Play for Wear OS</p>
+      <a href="https://play.google.com/store/apps/details?id=com.lr7.timeonice" target="_blank" rel="noopener" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302-2.302 2.302-2.593-2.302 2.593-2.302zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+        Get It on Google Play
+      </a>
+      <div class="language-flags">
+        <span title="English">&#127468;&#127463;</span>
+        <span title="French">&#127467;&#127479;</span>
+        <span title="Italian">&#127470;&#127481;</span>
+        <span title="Slovak">&#127480;&#127472;</span>
+        <span title="German">&#127465;&#127466;</span>
+        <span title="Finnish">&#127467;&#127470;</span>
+        <span title="Czech">&#127464;&#127487;</span>
+        <span title="Swedish">&#127480;&#127466;</span>
+      </div>
+      <p class="language-note">Available in 8 languages</p>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="site-footer">
+    <ul class="footer-links">
+      <li><a href="{{ '/toi/privacy/' | relative_url }}">Privacy Policy</a></li>
+      <li><a href="{{ '/toi/testers/' | relative_url }}">Beta Testers</a></li>
+      <li><a href="mailto:hello@lr7.digital">Contact</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 lr7 digital. Wear OS, Google Play and the Google Play logo are trademarks of Google LLC.</p>
+  </footer>
+
+  <!-- ==========================================
+       SCHEMA.ORG
+       ========================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Time On Ice",
+    "operatingSystem": "Wear OS",
+    "applicationCategory": "SportsApplication",
+    "description": "{{ page.description }}",
+    "url": "{{ page.url | absolute_url }}",
+    "image": "{{ '/toi/assets/toi-hero.jpeg' | absolute_url }}",
+    "author": {
+      "@type": "Organization",
+      "name": "lr7 digital",
+      "url": "{{ '/' | absolute_url }}"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1"
+    }
+  }
+  </script>
+
+  <!-- ==========================================
+       JAVASCRIPT — Scroll animations
+       ========================================== -->
+  <script>
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Binary state panel activation
+    const binaryObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          binaryObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    const binaryPanels = document.querySelector('.binary-panels');
+    if (binaryPanels) binaryObserver.observe(binaryPanels);
+
+    // EKG line animation
+    const ekgObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          ekgObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const ekgLine = document.querySelector('.ekg-line');
+    if (ekgLine) ekgObserver.observe(ekgLine);
+
+    // Stats counter animation
+    let statsAnimated = false;
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !statsAnimated) {
+          statsAnimated = true;
+          animateStats();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsEl = document.getElementById('stats-counter');
+    if (statsEl) statsObserver.observe(statsEl);
+
+    function animateStats() {
+      const items = document.querySelectorAll('.stat-value');
+      items.forEach(item => {
+        const type = item.dataset.type;
+        const prefix = item.dataset.prefix || '';
+        const suffix = item.dataset.suffix || '';
+
+        if (type === 'time') {
+          // Animate time display 0:00 → 32:07
+          const parts = item.dataset.target.split(':');
+          const targetMin = parseInt(parts[0]);
+          const targetSec = parseInt(parts[1]);
+          const targetTotal = targetMin * 60 + targetSec;
+          const duration = 2000;
+          const start = performance.now();
+
+          function tickTime(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * targetTotal);
+            const m = Math.floor(current / 60);
+            const s = current % 60;
+            item.textContent = m + ':' + String(s).padStart(2, '0');
+            if (progress < 1) requestAnimationFrame(tickTime);
+          }
+          requestAnimationFrame(tickTime);
+        } else {
+          // Animate number
+          const target = parseFloat(item.dataset.target);
+          const isFloat = target % 1 !== 0;
+          const duration = 2000;
+          const start = performance.now();
+
+          function tickNumber(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+            const display = isFloat ? current.toFixed(1) : Math.floor(current);
+            item.textContent = prefix + display + suffix;
+            if (progress < 1) requestAnimationFrame(tickNumber);
+          }
+          requestAnimationFrame(tickNumber);
+        }
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

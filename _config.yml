@@ -5,9 +5,11 @@ baseurl: ""
 
 # Build settings
 markdown: kramdown
+encoding: utf-8
 exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
   - GEMINI.md
+  - WEBSITE_DESIGN_BRIEF.md
   - vendor/
