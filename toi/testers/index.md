@@ -13,12 +13,18 @@ You can download the stable version of **Time On Ice** directly from the Google 
 
 We use the Beta Program to test new "On-Ice Scout" algorithms and advanced analytics before they go wide. If you're a power user who wants the latest features first—and doesn't mind an occasional bug—we'd love to have you on the roster.
 
+> **Note:** Beta testers are on the **Closed Testing track** — a separate pre-release build distinct from the production app on the Play Store. You're testing real builds, but not the version the general public sees.
+
 ### How to Join the Beta
 
 Follow these steps **in order** to get the beta build on your watch and phone.
 
-> **Step 1: Join the Group**
-> Click [here](https://groups.google.com/g/toi-testers) to join the Google Group. You'll be added to the whitelist automatically.
+> **Step 1: Request Access**
+> Request to join the beta tester group using one of the following methods:
+> - **Google Group:** Click [here](https://groups.google.com/g/toi-testers) to submit a join request. You'll be approved and added to the whitelist.
+> - **Email:** Send an email to [hello@lr7.digital](mailto:hello@lr7.digital) with the subject line **"Beta Request"** and include the Google Account email you use on your Android device.
+>
+> Either way, you'll receive a confirmation once you've been added.
 
 ### Step 2: Accept the Invite (Crucial)
 You must "Opt-In" before you can download the beta version.
@@ -52,15 +58,6 @@ You must "Opt-In" before you can download the beta version.
 3.  Find **Time On Ice** in that list and tap the download icon.
 
 ---
-
-### Step 5: Get "Pro" for Free 💎
-As a beta tester, you can unlock the Pro Contract features for free using the Google Play Test Card.
-
-1.  Open the app on your **Phone**.
-2.  Tap the **Settings (Gear)** icon > **"Unlock Pro"**.
-3.  You will see a purchase screen.
-    * **CHECK:** It should say **"Test card, always approves"** or show a price of **$0.00 / Free**.
-    * *If it asks for real money ($4.99), **STOP**. Do not pay. Let me know at the email below.*
 
 **Found a bug?**
 Send an email to [hello@lr7.digital](mailto:hello@lr7.digital)

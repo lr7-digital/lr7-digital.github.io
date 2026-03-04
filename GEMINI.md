@@ -1,3 +1,5 @@
+- Prepend `bundle exec` to `jekyll` commands to avoid gem version conflicts.
+
 # GEMINI.md - Project Context for lr7 digital
 
 ## Project Overview

@@ -1,3 +1,11 @@
+
+## Development
+
+To run the site locally, use:
+```bash
+bundle exec jekyll serve
+```
+
 # Focus on the game, not your watch.
 
 You paid the league fees. You bought the top-end stick. But do you actually know if you’re getting your ice time? Stop guessing and start tracking.
