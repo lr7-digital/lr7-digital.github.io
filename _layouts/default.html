@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
+    <meta name="description" content="{{ page.description | default: 'lr7 digital - Building apps that let you focus on the game, not your watch.' }}">
+    <link rel="canonical" href="https://lr7.digital{{ page.url }}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.description | default: 'lr7 digital - Building apps that let you focus on the game, not your watch.' }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lr7.digital{{ page.url }}">
+    <meta property="og:image" content="https://lr7.digital/assets/lr7-digital-studio.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.description | default: 'lr7 digital - Building apps that let you focus on the game, not your watch.' }}">
+    <meta name="twitter:image" content="https://lr7.digital/assets/lr7-digital-studio.jpg">
     <style>
         :root {
             --bg-color: #ffffff;

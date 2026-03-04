@@ -1,13 +1,36 @@
 ---
 layout: toi
 ---
+<!-- Schema.org SoftwareApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Time On Ice",
+  "description": "The ultimate hockey shift tracker built exclusively for hockey players on Wear OS. Automatically detects when you step on the ice and tracks every shift.",
+  "applicationCategory": "SportsApplication",
+  "operatingSystem": "Wear OS",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "lr7 digital",
+    "url": "https://lr7.digital"
+  }
+}
+</script>
+
 <div class="columns">
     <div class="left-column">
-        <img src="{{ '/toi/assets/icon.png' | relative_url }}" class="icon" alt="Time On Ice Icon">
-        
+        <img src="{{ '/toi/assets/icon.png' | relative_url }}" class="icon" alt="Time On Ice Icon" width="300" height="300">
+
         <div class="card">
             <a href="https://play.google.com/store/apps/details?id=com.TimeOnIce">
-                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="max-width: 200px; height: auto;">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="max-width: 200px; height: auto;" width="200" height="60">
             </a>
             <p>Google Play and the Google Play logo are trademarks of Google LLC.</p>
         </div>
@@ -19,8 +42,8 @@ layout: toi
             <p>Questions? Email us at <a href="mailto:hello@lr7.digital">hello@lr7.digital</a></p>
         </div>
 
-        <img src="{{ '/toi/assets/splash-home.jpg' | relative_url }}" class="splash-img" alt="Time On Ice App Screenshot">
-        <img src="{{ '/toi/assets/splash-stats.jpg' | relative_url }}" class="splash-img" alt="Time On Ice App Screenshot">
+        <img src="{{ '/toi/assets/splash-home.jpg' | relative_url }}" class="splash-img" alt="Time On Ice App Screenshot" width="400" height="300" loading="lazy">
+        <img src="{{ '/toi/assets/splash-stats.jpg' | relative_url }}" class="splash-img" alt="Time On Ice Stats Screenshot" width="400" height="300" loading="lazy">
     </div>
 
     <div class="right-column">
