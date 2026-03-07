@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lr7 digital — Concept E: COLD LIGHT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07080B;
+      --bg-warm: #0B0905;
+      --surface: #0E0F12;
+      --border: #181A1F;
+      --text: #C0CADE;
+      --muted: #444E5E;
+      --amber: #F0A020;
+      --amber-bright: #FFC244;
+      --amber-dim: rgba(240, 160, 32, 0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 24px 52px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 50;
+      background: linear-gradient(to bottom, rgba(7,8,11,0.9), transparent);
+    }
+
+    .nav-logo {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 400; font-style: italic;
+      font-size: 1.2rem; letter-spacing: 0.04em;
+      color: var(--text); text-decoration: none;
+    }
+    .nav-logo .n { color: var(--amber); font-style: normal; }
+
+    .nav-link {
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--amber); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+      padding: 0 40px;
+    }
+
+    /* The warm glow emanating from behind the "7" — like the monitor in the dark */
+    .hero-aura {
+      position: absolute;
+      width: 600px; height: 600px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -52%);
+      background: radial-gradient(ellipse at center,
+        rgba(200, 110, 10, 0.09) 0%,
+        rgba(140, 70, 5, 0.05) 30%,
+        transparent 65%);
+      pointer-events: none;
+    }
+
+    /* The "7" — the entire brand, one character */
+    .hero-seven {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(220px, 48vw, 520px);
+      line-height: 1;
+      color: var(--amber);
+      text-shadow:
+        0 0 40px rgba(240, 160, 32, 0.2),
+        0 0 100px rgba(200, 110, 10, 0.1);
+      user-select: none;
+      opacity: 0;
+      animation: sevenReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      position: relative; z-index: 2;
+      letter-spacing: -0.03em;
+    }
+
+    @keyframes sevenReveal {
+      from { opacity: 0; filter: blur(12px); transform: scale(1.04); }
+      to   { opacity: 1; filter: blur(0px); transform: scale(1); }
+    }
+
+    /* Text overlay */
+    .hero-text {
+      position: absolute;
+      bottom: 14vh;
+      left: 50%; transform: translateX(-50%);
+      text-align: center;
+      z-index: 5;
+    }
+
+    .hero-quote {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      color: rgba(192, 202, 222, 0.55);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      margin-bottom: 6px;
+      opacity: 0;
+      animation: textRise 0.8s ease 1.4s forwards;
+    }
+
+    .hero-quote-2 {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      color: rgba(192, 202, 222, 0.85);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      opacity: 0;
+      animation: textRise 0.8s ease 1.65s forwards;
+    }
+
+    @keyframes textRise {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px; left: 50%; transform: translateX(-50%);
+      font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+      opacity: 0;
+      animation: textRise 0.6s ease 2.1s forwards;
+    }
+    .hero-scroll:hover { color: var(--amber); }
+
+    /* ── INTRO BAND ── */
+    .intro-band {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 52px;
+      background: var(--surface);
+    }
+    .intro-inner {
+      max-width: 900px; margin: 0 auto; text-align: center;
+    }
+    .intro-label {
+      font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 20px;
+    }
+    .intro-text {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      color: var(--text); line-height: 1.55;
+      letter-spacing: 0.01em;
+    }
+    .intro-text em { font-style: normal; color: var(--amber-bright); }
+
+    /* ── APPS SECTION ── */
+    .apps-wrap {
+      max-width: 1080px; margin: 0 auto; padding: 88px 52px;
+    }
+
+    .section-row {
+      display: flex; align-items: baseline; gap: 16px; margin-bottom: 44px;
+    }
+
+    .section-heading {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 400; font-size: 2.4rem;
+      color: var(--text); letter-spacing: -0.01em;
+    }
+
+    .section-rule {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    .apps-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    }
+
+    .app-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 44px; text-decoration: none; color: inherit;
+      display: block; position: relative; overflow: hidden;
+      transition: border-color 0.25s;
+    }
+    .app-card:hover { border-color: rgba(240,160,32,0.25); }
+    .app-card:hover .app-cta { color: var(--amber); }
+
+    .app-warm {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(200,120,10,0.05) 0%, transparent 65%);
+      opacity: 0; transition: opacity 0.3s; pointer-events: none;
+    }
+    .app-card:hover .app-warm { opacity: 1; }
+
+    .app-index {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic; font-size: 0.85rem;
+      color: var(--muted); margin-bottom: 20px;
+    }
+
+    .app-name {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 400; font-size: 2rem;
+      color: var(--text); margin-bottom: 5px; line-height: 1.1;
+    }
+
+    .app-platform {
+      font-size: 0.65rem; font-weight: 500;
+      color: var(--muted); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+
+    .app-rule { width: 28px; height: 1px; background: var(--border); margin-bottom: 20px; }
+
+    .app-desc {
+      font-size: 0.88rem; font-weight: 300;
+      color: var(--muted); line-height: 1.8; max-width: 300px; margin-bottom: 32px;
+    }
+
+    .app-cta {
+      font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); display: inline-flex; align-items: center; gap: 8px;
+      transition: color 0.2s;
+    }
+    .app-cta::after { content: '→'; }
+
+    .app-card.empty {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 14px; min-height: 280px;
+      border-style: dashed; border-color: #131519; cursor: default;
+    }
+    .app-card.empty:hover { border-color: rgba(255,255,255,0.07); }
+    .empty-seven {
+      font-family: 'Abril Fatface', serif;
+      font-size: 3rem; color: #151820; line-height: 1;
+    }
+    .empty-text {
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase; color: #1E2230;
+    }
+
+    /* ── CLOSING / ABOUT ── */
+    .closing {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 80px 52px;
+    }
+    .closing-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+
+    .closing-quote {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.0;
+      color: var(--amber);
+      letter-spacing: -0.01em;
+    }
+    .closing-quote .dim { color: var(--muted); }
+
+    .closing-text {
+      font-size: 0.92rem; font-weight: 300;
+      color: var(--muted); line-height: 1.85; margin-bottom: 24px;
+    }
+    .closing-text strong { color: var(--text); font-weight: 400; }
+
+    .closing-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--amber); text-decoration: none;
+      border-bottom: 1px solid rgba(240,160,32,0.3); padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .closing-cta:hover { border-color: var(--amber); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 26px 52px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-copy { font-size: 0.68rem; font-weight: 300; color: var(--muted); }
+    .footer-logo {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic; font-size: 1.1rem;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-logo:hover { color: var(--text); }
+    .footer-logo .n { font-style: normal; color: var(--amber); }
+
+    /* ── BADGE ── */
+    .badge {
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--amber); color: var(--bg);
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 6px 12px; z-index: 200;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav, .intro-band, .apps-wrap, .closing, footer { padding-left: 20px; padding-right: 20px; }
+      .apps-grid { grid-template-columns: 1fr; }
+      .app-card.empty { min-height: 120px; }
+      .closing-inner { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">lr<span class="n">7</span> digital</a>
+    <a href="mailto:hello@lr7.digital" class="nav-link">hello</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-aura"></div>
+    <div class="hero-seven">7</div>
+
+    <div class="hero-text">
+      <p class="hero-quote">Some rooms are just rooms.</p>
+      <p class="hero-quote-2">LR7 was never just a room.</p>
+    </div>
+
+    <a href="#apps" class="hero-scroll">apps ↓</a>
+  </div>
+
+  <div class="intro-band">
+    <div class="intro-inner">
+      <div class="intro-label">Locker Room Seven · Digital Studio</div>
+      <p class="intro-text">
+        Every player checks the board before a game.<br>
+        When it says <em>LR7</em> — you know tonight is different.
+      </p>
+    </div>
+  </div>
+
+  <div class="apps-wrap" id="apps">
+    <div class="section-row">
+      <h2 class="section-heading">Apps</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="apps-grid">
+
+      <a class="app-card" href="#">
+        <div class="app-warm"></div>
+        <div class="app-index">No. 01</div>
+        <h3 class="app-name">Time On Ice</h3>
+        <div class="app-platform">Apple Watch · watchOS</div>
+        <div class="app-rule"></div>
+        <p class="app-desc">Hockey shift tracker for Apple Watch. Know your ice time without ever breaking focus. Stay in the game — not the stats.</p>
+        <div class="app-cta">App Store</div>
+      </a>
+
+      <div class="app-card empty">
+        <div class="empty-seven">7</div>
+        <div class="empty-text">More apps coming</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="closing">
+    <div class="closing-inner">
+      <h2 class="closing-quote">
+        <span class="dim">Built</span><br>
+        for the<br>
+        ice.
+      </h2>
+      <div>
+        <p class="closing-text">
+          <strong>lr7 digital</strong> is a small independent studio making software for hockey players. We build tools that disappear — letting you focus on the game, the moment, the ice.
+        </p>
+        <p class="closing-text">
+          One team. One obsession. Building the tools we always wished existed.
+        </p>
+        <a href="mailto:hello@lr7.digital" class="closing-cta">hello@lr7.digital →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2024 lr7 digital</span>
+    <a href="#" class="footer-logo">lr<span class="n">7</span> digital</a>
+  </footer>
+
+  <div class="badge">E — COLD LIGHT</div>
+
+</body>
+</html>

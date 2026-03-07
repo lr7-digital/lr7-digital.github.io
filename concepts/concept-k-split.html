@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lr7 digital — Concept K: SPLIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07060A;
+      --text: #C8BAA8;
+      --muted: #5A4E40;
+      --amber: #F0A020;
+      --amber-dim: rgba(240,160,32,0.08);
+      --border: #1C1610;
+      --surface: #0D0B08;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; overflow-x:hidden; }
+
+    body::before {
+      content:''; position:fixed; inset:0; z-index:999; pointer-events:none; opacity:.03;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:200px 200px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      padding:22px 52px;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .logo { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.2rem; letter-spacing:.04em; color:var(--text); text-decoration:none; }
+    .logo em { font-style:italic; color:var(--amber); }
+    .nav-a { font-size:.68rem; font-weight:400; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .nav-a:hover { color:var(--amber); }
+
+    /* ── HERO — SPLIT ── */
+    .hero {
+      height:100vh;
+      display:flex;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* Photo — right half of viewport */
+    .hero-photo-wrap {
+      position:absolute;
+      left:40%; right:0; top:0; bottom:0;
+    }
+    .hero-photo {
+      width:100%; height:100%;
+      object-fit:cover;
+      object-position:15% 38%;
+      filter:saturate(0.68) contrast(1.1) brightness(0.78);
+    }
+    /* Fade: strong left edge blends into dark bg, subtle top/bottom vignettes */
+    .hero-photo-overlay {
+      position:absolute; inset:0;
+      background:
+        linear-gradient(to right,
+          rgba(7,6,10,1.0)   0%,
+          rgba(7,6,10,.92)  10%,
+          rgba(7,6,10,.55)  24%,
+          rgba(7,6,10,.12)  44%,
+          transparent        65%),
+        linear-gradient(to top,  rgba(7,6,10,.75) 0%, rgba(7,6,10,.2) 18%, transparent 36%),
+        linear-gradient(to bottom, rgba(7,6,10,.6) 0%, transparent 16%);
+    }
+
+    /* Left text panel — pure dark, content at bottom */
+    .hero-left {
+      position:relative; z-index:10;
+      width:56%;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      padding:0 52px 72px;
+    }
+
+    .eyebrow {
+      display:flex; align-items:center; gap:12px;
+      font-size:.6rem; font-weight:400; letter-spacing:.22em; text-transform:uppercase;
+      color:rgba(240,160,32,0.45);
+      margin-bottom:22px;
+      opacity:0; animation:up .7s ease .1s forwards;
+    }
+    .eyebrow::before { content:''; width:24px; height:1px; background:rgba(240,160,32,0.35); flex-shrink:0; }
+
+    h1 {
+      font-family:'Cormorant Garamond',serif;
+      line-height:1; letter-spacing:-.01em;
+      margin-bottom:28px;
+      opacity:0; animation:up .8s ease .28s forwards;
+    }
+    .h1-soft {
+      display:block;
+      font-style:italic; font-weight:300; font-size:clamp(3.2rem,5.5vw,5.2rem);
+      color:rgba(200,186,168,0.45);
+    }
+    .h1-hard {
+      display:block;
+      font-weight:700; font-size:clamp(4rem,8vw,7rem);
+      color:#D4C4A8; letter-spacing:-.02em;
+    }
+    .h1-hard .a { color:var(--amber); }
+
+    .tagline {
+      font-size:.88rem; font-weight:300;
+      color:rgba(200,186,168,0.45);
+      line-height:1.8; max-width:310px;
+      margin-bottom:34px;
+      opacity:0; animation:up .7s ease .48s forwards;
+    }
+
+    .hero-cta {
+      display:inline-flex; align-items:center; gap:8px;
+      font-family:'Cormorant Garamond',serif;
+      font-style:italic; font-weight:500; font-size:1.1rem;
+      color:var(--amber); text-decoration:none;
+      border-bottom:1px solid rgba(240,160,32,0.28); padding-bottom:2px;
+      width:fit-content; transition:border-color .2s;
+      opacity:0; animation:up .7s ease .64s forwards;
+    }
+    .hero-cta:hover { border-color:var(--amber); }
+
+    /* Very faint amber line at the visual seam */
+    .hero-seam {
+      position:absolute; left:40%; top:18%; bottom:18%;
+      width:1px;
+      background:linear-gradient(to bottom, transparent, rgba(240,160,32,0.06) 35%, rgba(240,160,32,0.06) 65%, transparent);
+      z-index:5; pointer-events:none;
+    }
+
+    @keyframes up { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── APPS ── */
+    .apps-wrap { max-width:1080px; margin:0 auto; padding:84px 52px; }
+    .sec-head { display:flex; align-items:baseline; gap:16px; margin-bottom:48px; }
+    .sec-title { font-family:'Cormorant Garamond',serif; font-weight:500; font-size:2.4rem; color:var(--text); letter-spacing:-.01em; }
+    .sec-rule { flex:1; height:1px; background:linear-gradient(to right, var(--border), transparent); }
+    .apps-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+    .app-card {
+      background:var(--surface); border:1px solid var(--border);
+      padding:40px; text-decoration:none; color:inherit;
+      display:block; position:relative; overflow:hidden;
+      transition:border-color .25s, box-shadow .25s;
+    }
+    .app-card:hover { border-color:rgba(240,160,32,0.2); box-shadow:0 6px 32px rgba(240,160,32,0.05); }
+    .app-warm { position:absolute; inset:0; background:radial-gradient(ellipse at 30% 60%, rgba(200,120,10,.04), transparent 65%); opacity:0; transition:opacity .3s; pointer-events:none; }
+    .app-card:hover .app-warm { opacity:1; }
+    .app-card:hover .app-cta { color:var(--amber); }
+
+    .app-idx { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.85rem; color:var(--muted); margin-bottom:16px; }
+    .app-name { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:2rem; color:var(--text); line-height:1; margin-bottom:4px; }
+    .app-plat { font-size:.6rem; font-weight:400; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; margin-bottom:22px; }
+    .app-rule { width:28px; height:1px; background:var(--border); margin-bottom:18px; }
+    .app-desc { font-size:.85rem; font-weight:300; color:var(--muted); line-height:1.8; max-width:290px; margin-bottom:28px; }
+    .app-cta { font-size:.62rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); display:inline-flex; align-items:center; gap:8px; transition:color .2s; }
+    .app-cta::after { content:'→'; }
+
+    .app-card.ghost {
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:12px; min-height:280px; border-style:dashed; border-color:#130F0A; cursor:default;
+    }
+    .app-card.ghost:hover { border-color:rgba(255,255,255,.05); box-shadow:none; }
+    .ghost-mk { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2.2rem; color:#1A140E; }
+    .ghost-t { font-size:.6rem; font-weight:400; letter-spacing:.18em; text-transform:uppercase; color:#221A12; }
+
+    /* Studio */
+    .studio { border-top:1px solid var(--border); padding:80px 52px; }
+    .studio-inner { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .studio-hl { font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(2rem,4.5vw,3.5rem); line-height:1.05; color:var(--text); letter-spacing:-.01em; }
+    .studio-hl em { font-style:italic; color:var(--amber); }
+    .studio-text { font-size:.88rem; font-weight:300; color:var(--muted); line-height:1.85; margin-bottom:20px; }
+    .studio-text strong { color:var(--text); font-weight:400; }
+    .studio-link { display:inline-flex; align-items:center; gap:8px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1rem; color:var(--amber); text-decoration:none; border-bottom:1px solid rgba(240,160,32,0.25); padding-bottom:2px; transition:border-color .2s; }
+    .studio-link:hover { border-color:var(--amber); }
+
+    footer { padding:26px 52px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); }
+    .f-copy { font-size:.65rem; font-weight:300; color:var(--muted); }
+    .f-logo { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.05rem; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .f-logo:hover { color:var(--text); }
+    .f-logo em { font-style:italic; color:var(--amber); }
+
+    .badge { position:fixed; bottom:24px; right:24px; background:var(--amber); color:var(--bg); font-size:.6rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; padding:6px 12px; z-index:200; }
+
+    @media (max-width:900px) {
+      .hero { height:auto; min-height:100vh; flex-direction:column; }
+      .hero-photo-wrap { position:relative; left:0; height:50vh; }
+      .hero-left { width:100%; padding:40px 20px 64px; }
+      .hero-seam { display:none; }
+      nav, .apps-wrap, .studio, footer { padding-left:20px; padding-right:20px; }
+      .apps-grid { grid-template-columns:1fr; }
+      .app-card.ghost { min-height:120px; }
+      .studio-inner { grid-template-columns:1fr; gap:40px; }
+      footer { flex-direction:column; gap:12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">lr<em>7</em> digital</a>
+    <a href="mailto:hello@lr7.digital" class="nav-a">hello</a>
+  </nav>
+
+  <div class="hero">
+
+    <div class="hero-seam"></div>
+
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="../assets/lr7-hero.png" alt="Hockey arena foyer">
+      <div class="hero-photo-overlay"></div>
+    </div>
+
+    <div class="hero-left">
+      <p class="eyebrow">Locker Room Seven · Digital Studio</p>
+      <h1>
+        <span class="h1-soft">Tonight,</span>
+        <span class="h1-hard">it's LR<span class="a">7.</span></span>
+      </h1>
+      <p class="tagline">We build apps that let you focus on the game, not your watch.</p>
+      <a href="#apps" class="hero-cta">See our apps →</a>
+    </div>
+
+  </div>
+
+  <div class="apps-wrap" id="apps">
+    <div class="sec-head">
+      <h2 class="sec-title">Apps</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="apps-grid">
+      <a class="app-card" href="#">
+        <div class="app-warm"></div>
+        <div class="app-idx">No. 01</div>
+        <div class="app-name">Time On Ice</div>
+        <div class="app-plat">Apple Watch · watchOS</div>
+        <div class="app-rule"></div>
+        <p class="app-desc">Hockey shift tracker for Apple Watch. Know your ice time without breaking focus. Stay in the game — not the stats.</p>
+        <div class="app-cta">App Store</div>
+      </a>
+      <div class="app-card ghost">
+        <div class="ghost-mk">+</div>
+        <div class="ghost-t">More apps coming</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="studio">
+    <div class="studio-inner">
+      <h2 class="studio-hl">
+        Built by players<br>for <em>players.</em>
+      </h2>
+      <div>
+        <p class="studio-text">
+          <strong>lr7 digital</strong> is a small independent studio making software for hockey players. We build tools that disappear into the game — precise, focused, built from experience on the ice.
+        </p>
+        <p class="studio-text">One developer. The tools we always wished existed.</p>
+        <a href="mailto:hello@lr7.digital" class="studio-link">hello@lr7.digital →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="f-copy">© 2024 lr7 digital</span>
+    <a href="#" class="f-logo">lr<em>7</em> digital</a>
+  </footer>
+
+  <div class="badge">K — SPLIT</div>
+
+</body>
+</html>

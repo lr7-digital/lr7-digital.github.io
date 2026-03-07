@@ -6,6 +6,12 @@
       "runtimeExecutable": "bundle",
       "runtimeArgs": ["exec", "jekyll", "serve"],
       "port": 4000
+    },
+    {
+      "name": "concepts",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4200"],
+      "port": 4200
     }
   ]
 }
